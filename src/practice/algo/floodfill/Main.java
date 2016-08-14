@@ -1,4 +1,4 @@
-package submission.uva.floodfill;
+package practice.algo.floodfill;
 
 //import java.io.FileInputStream;
 //import java.util.Arrays;
