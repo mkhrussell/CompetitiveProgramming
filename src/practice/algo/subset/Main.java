@@ -1,7 +1,5 @@
 package practice.algo.subset;
 
-import java.io.FileInputStream;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -13,12 +11,11 @@ public class Main {
 
 	private Scanner sc = null;
 	private int[] numbers;	
-	private char[] operators = new char[] {'+', '-', '*'};
-	
+		
 	private void solve() {
-		try {
-			System.setIn(new FileInputStream("UVa10344_in.txt"));
-		}catch (Exception e) {}
+//		try {
+//			System.setIn(new FileInputStream("UVa10344_in.txt"));
+//		}catch (Exception e) {}
 		
 		sc = new Scanner(System.in);
 		while(sc.hasNextInt()) {
@@ -27,8 +24,10 @@ public class Main {
 			if(isEndOfInput())
 				break;
 			
+			flag = false;
+			
 			findSolution();
-			printSolution();						
+			printSolution();
 		}
 	}
 
@@ -47,37 +46,51 @@ public class Main {
 	}
 
 	private void findSolution() {
-		//System.out.println(Arrays.toString(numbers));
-		int[] path = new int[4];
-		Arrays.fill(path, -1);
-		permutation(0, path.clone());		
+		permuteNumbers(0, new boolean[5], numbers.clone());
 	}
 	
-	private void permutation(int n, int[] path) {
-		if(n == 4) {
-			System.out.println(Arrays.toString(path));			
-			for(int i = 0; i < 4; i++) {
-				System.out.print(operators[path[i]] + " ");
-			}
-			System.out.println();
-			
-			
+	boolean flag = false;
+	private void calculate(int n, int sum, int[] numCombination) {
+		if(flag)
+			return;
 		
+		if(n == 5) {
+			if(sum == 23) {
+				flag = true;
+			}			
 			return;
 		}
 		
-		for(int i = 0; i < 3; i++) {
-			int[] newPath = path.clone();
-			newPath[n] = i;
-			permutation(n + 1, newPath);
-		}
+		calculate(n + 1, sum + numCombination[n], numCombination);
+		calculate(n + 1, sum - numCombination[n], numCombination);
+		calculate(n + 1, sum * numCombination[n], numCombination);
 	}
 	
-	private void calculate(int n, boolean[] visited) {
+	private void permuteNumbers(int n, boolean[] visited, int[] combination) {
+		if(flag)
+			return;
 		
+		if(n == 5) {
+			calculate(1, combination[0], combination.clone());
+			return;
+		}
+		
+		for(int i = 0; i < 5; i++) {
+			if(!visited[i]) {
+				boolean[] newVisited = visited.clone();
+				newVisited[i] = true;
+				int[] newCombination = combination.clone();
+				newCombination[i] = numbers[n];
+				permuteNumbers(n + 1, newVisited, newCombination);
+			}			
+		}
 	}
 
 	private void printSolution() {
-		
+		if(flag) {
+			System.out.println("Possible");
+		}else {
+			System.out.println("Impossible");
+		}
 	}
 }

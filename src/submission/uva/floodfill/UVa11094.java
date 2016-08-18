@@ -1,9 +1,5 @@
 package submission.uva.floodfill;
 
-//import java.io.FileInputStream;
-//import java.util.Arrays;
-
-
 import java.util.Scanner;
 
 public class UVa11094 {
@@ -25,7 +21,6 @@ public class UVa11094 {
 		// SOLVE
 		while(sc.hasNextLine()) {
 			readCase();
-			//print2dArray(map);
 		
 			findSolution();
 			printSolution();
@@ -52,14 +47,17 @@ public class UVa11094 {
 		System.out.println(maxRegionSize);		
 	}
 	private void findSolution() {
-		int ret = 0;
-		ret = findAndCapture(X, Y); // Fill the king's land first
+		//int ret = 0;
+		//ret = findAndCapture(X, Y); // Fill the king's land first
+		
+		findAndCapture(X, Y); // Fill the king's land first
 		
 		maxRegionSize = 0; // Reset previous case's result		
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
 				if(map[i][j] == 1) {
-					ret = findAndCapture(i, j);
+					//ret = findAndCapture(i, j);
+					findAndCapture(i, j);
 				}
 			}
 		}

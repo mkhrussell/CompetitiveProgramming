@@ -1,8 +1,8 @@
 package practice.ds.collections;
 
-import java.io.*;
-
-import java.util.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by kamrul on 2/27/16.
@@ -35,10 +35,9 @@ public class Main {
             e.printStackTrace();
         }*/
         
-        sc = new Scanner(System.in);        
+        sc = new Scanner(System.in);
         ArrayList<Long> numbers = new ArrayList<Long>();        
-        while(sc.hasNextLine()) {
-            
+        while(sc.hasNextLine()) {            
         	long num = sc.nextLong();
         	sc.nextLine(); // Ignore
         	
