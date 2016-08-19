@@ -1,7 +1,8 @@
 package submission.uva.ds.collections;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
+//import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -43,13 +44,15 @@ public class UVa10107 {
         	sc.nextLine(); // Ignore
         	
             numbers.add(num);
+            Collections.sort(numbers);
 
-            numbers.sort(new Comparator<Long>() {
-                @Override
-                public int compare(Long left, Long right) {
-                    return left.compareTo(right);
-                }
-            });
+            /* Following commented code only applicable for JDK 8 or above */
+//            numbers.sort(new Comparator<Long>() {
+//                @Override
+//                public int compare(Long left, Long right) {
+//                    return left.compareTo(right);
+//                }
+//            });
 
             if(numbers.size() % 2 == 0)
             {

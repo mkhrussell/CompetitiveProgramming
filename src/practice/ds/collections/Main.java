@@ -1,8 +1,9 @@
 package practice.ds.collections;
 
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Comparator;
+//import java.util.Comparator;
 
 /**
  * Created by kamrul on 2/27/16.
@@ -41,14 +42,16 @@ public class Main {
         	long num = sc.nextLong();
         	sc.nextLine(); // Ignore
         	
-            numbers.add(num);
+            numbers.add(num);            
+            Collections.sort(numbers);
 
-            numbers.sort(new Comparator<Long>() {
-                @Override
-                public int compare(Long left, Long right) {
-                    return left.compareTo(right);
-                }
-            });
+/* Following commented code only applicable for JDK 8 or above */
+//            numbers.sort(new Comparator<Long>() {
+//                @Override
+//                public int compare(Long left, Long right) {
+//                    return left.compareTo(right);
+//                }
+//            });
 
             if(numbers.size() % 2 == 0)
             {
