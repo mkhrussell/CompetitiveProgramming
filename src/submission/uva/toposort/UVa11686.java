@@ -1,22 +1,21 @@
-package practice.algo.toposort;
+package submission.uva.toposort;
 
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Main {
+public class UVa11686 {
 
 	public static void main(String[] args) {
-		Main prob = new Main();
-		prob.solve();
+		UVa11686 problem = new UVa11686();
+		problem.solve();
 	}
 	
 	private Scanner sc = null;	
 	private void solve() {
-		try {
-			System.setIn(new FileInputStream("UVa11686_in.txt"));
-		}catch(Exception e) {}
+//		try {
+//			System.setIn(new FileInputStream("UVa11686_in.txt"));
+//		}catch(Exception e) {}
 		
 		sc = new Scanner(System.in);
 		while(sc.hasNextInt()) {
@@ -89,7 +88,7 @@ public class Main {
 			count++;
 		}
 		
-		if(count != N) {
+		if(count != N) { // Not a DAG, has a cycle
 			System.out.println("IMPOSSIBLE");
 		}else {
 			for(int n : order) {
