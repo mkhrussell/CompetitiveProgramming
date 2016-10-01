@@ -1,24 +1,18 @@
-package practice.algo.recursion;
+package submission.uva.recursion;
 
-//import java.io.FileInputStream;
 import java.util.Scanner;
 
-public class Main {
+public class UVa10063 {
 
 	public static void main(String[] args) {
-		Main problem = new Main();
-		problem.run();		
+		UVa10063 sol = new UVa10063();
+		sol.run();
 	}
 	
-	Scanner sc = null;
-	
+	Scanner sc = null;	
 	String input;
 	
 	void run() {
-//		try {
-//			System.setIn(new FileInputStream("UVa10063_Knuths_Permutation_in.txt"));
-//		}catch(Exception e) {}
-		
 		sc = new Scanner(System.in);
 		boolean flag = false;
 		while(sc.hasNext()) {
