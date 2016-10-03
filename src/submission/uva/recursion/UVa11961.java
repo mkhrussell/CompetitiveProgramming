@@ -1,17 +1,16 @@
-package practice.algo.recursion;
+package submission.uva.recursion;
 
-//import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.HashSet;
 
-public class Main {
+public class UVa11961 {
 
 	public static void main(String[] args) {
-		Main problem = new Main();
-		problem.run();		
+		UVa11961 sol = new UVa11961();
+		sol.run();
 	}
 	
 	Scanner sc;
@@ -22,9 +21,6 @@ public class Main {
 	HashSet<String> resultSequences = new HashSet<>();
 		
 	void run() {
-//		try {
-//			System.setIn(new FileInputStream("UVa11961_DNA_in.txt"));
-//		}catch(Exception e) {}
 		
 		sc = new Scanner(System.in);
 		T = sc.nextInt();
