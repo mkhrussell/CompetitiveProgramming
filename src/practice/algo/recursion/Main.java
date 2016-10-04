@@ -1,11 +1,14 @@
 package practice.algo.recursion;
 
-//import java.io.FileInputStream;
+/*
+ * Problem : https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1202
+ * http://blog.csdn.net/metaphysis/article/details/6877397
+ * http://jeno5980515.github.io/2015/03/16/%E8%A7%A3%E9%A1%8C%E5%8D%80/UVa/10261%20-%20Ferry%20Loading/
+ */
+
+import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
-import java.util.HashSet;
 
 public class Main {
 
@@ -16,64 +19,91 @@ public class Main {
 	
 	Scanner sc;
 	int T;
-	
-	int N, K;
-	char[] dnaSequence;	
-	HashSet<String> resultSequences = new HashSet<>();
 		
 	void run() {
-//		try {
-//			System.setIn(new FileInputStream("UVa11961_DNA_in.txt"));
-//		}catch(Exception e) {}
+		try {
+			System.setIn(new FileInputStream("UVa10261_Ferry_Loading_in.txt"));
+			//System.setOut(new PrintStream("UVa10261_Ferry_Loading_out.txt"));
+		}catch(Exception e) {}
 		
 		sc = new Scanner(System.in);
 		T = sc.nextInt();
 		
+		boolean flag = false;
+		
 		while(T-- > 0) {
-			N = sc.nextInt();
-			K = sc.nextInt();
-			dnaSequence = sc.next().toCharArray();
-			
-			// Reset
-			resultSequences.clear();
-			
-			// Generate Sequences
-			mutate(0, dnaSequence.clone(), new boolean[dnaSequence.length]);
-			
-			// Post Process
-			List<String> sortedSequences = new ArrayList<>(resultSequences);
-			Collections.sort(sortedSequences);
-			
-			// Print Result
-			System.out.println("" + resultSequences.size());			
-			for(String seq : sortedSequences) {
-				System.out.println(seq);
-			}
+			if(flag)
+				System.out.println();
+			takeInput();				
+			findSolution();
+			flag = true;
 		}
 	}
 	
-	String acgt = "ACGT"; // Range Set
+	int ferryLength;
+	ArrayList<Integer> carList = new ArrayList<>();
+		
+	void takeInput() {
+		ferryLength = sc.nextInt();
+		ferryLength *= 100;
+		carList.clear();
+		int car;
+		while((car = sc.nextInt()) > 0) {
+			carList.add(car);
+		}
+	}
+	
+	void findSolution() {		
+		maxCar = 0;		
+		loadCar(0, ferryLength, ferryLength, new boolean[carList.size()]); 
+		
+		System.out.println("" + maxCar);
+		for(int i = 0; i < maxCar; i++) {
+			if(finalTaken[i])
+				System.out.println("port");
+			else
+				System.out.println("starboard");
+		}	
+	}
+	
+	int maxCar;
+	boolean[] finalTaken;
+	
+	void loadCar(int n, int port, int starboard, boolean[] taken) {
+		
+		if(n >= carList.size()) {
+			n = carList.size();
 			
-	void mutate(int k, char[] sequence, boolean[] taken) {
-		if(k == K) {			
-			resultSequences.add(new String(sequence));
+			if(n > maxCar) {
+				maxCar = n;
+				// Ans
+				finalTaken = taken.clone();
+			}
+			
 			return;
 		}
 		
-		for(int j = 0; j < N; j++) {
-			if(!taken[j]) {
-				taken[j] = true;
-				
-				for(int m = 0; m < acgt.length(); m++) {
-					char prevChar = sequence[j];
-					sequence[j] = acgt.charAt(m);
-					mutate(k + 1, sequence, taken);
-					sequence[j] = prevChar;					
-				}
-				
-				taken[j] = false;
+		int carLength = carList.get(n);
+		if(carLength > Math.max(port, starboard)) {
+			if(n > maxCar) {
+				maxCar = n;
+				// Ans
+				finalTaken = taken.clone();
 			}
+			
+			return;
+		}
+		
+		if(carLength <= port) {
+			taken[n] = true;
+			loadCar(n + 1, port - carLength, starboard, taken);
+			taken[n] = false;
+		}
+		
+		if(carLength <= starboard) {
+			taken[n] = false;
+			loadCar(n + 1, port, starboard - carLength, taken);
+			taken[n] = true;
 		}
 	}
-
 }
