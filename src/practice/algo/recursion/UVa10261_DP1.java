@@ -10,15 +10,15 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class UVa10261_DP1 {
 
 	public static void main(String[] args) {
-		Main problem = new Main();
+		UVa10261_DP1 problem = new UVa10261_DP1();
 		problem.run();		
 	}
 	
 	Scanner sc;
-	int T;
+	int T, nCase;
 		
 	void run() {
 		try {
@@ -29,14 +29,13 @@ public class Main {
 		sc = new Scanner(System.in);
 		T = sc.nextInt();
 		
-		boolean flag = false;
-		
-		while(T-- > 0) {
-			if(flag)
+		for(nCase = 1; nCase <= T; nCase++) {
+			if(nCase > 1) {
 				System.out.println();
+			}
+			
 			takeInput();				
 			findSolution();
-			flag = true;
 		}
 	}
 	
@@ -70,10 +69,11 @@ public class Main {
 	boolean[] finalTaken;
 	
 	void loadCar(int n, int port, int starboard, boolean[] taken) {
+		//System.out.println("Case #" + nCase + " loadCar: n=" + n + " port=" + port + " starboard=" + starboard);
 		
 		if(n >= carList.size()) {
-			n = carList.size();
 			
+			n = carList.size();			
 			if(n > maxCar) {
 				maxCar = n;
 				// Ans
