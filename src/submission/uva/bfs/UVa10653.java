@@ -1,20 +1,17 @@
-package practice.algo.bfs;
+package submission.uva.bfs;
 
-import java.util.Scanner;
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
-/*
- * https://uva.onlinejudge.org/external/106/10653.pdf
- */
-
-public class Main {
-    public static void main(String args[]){
-        Main sol = new Main();
-        sol.run();
-    }
-    
-    class Point {
+public class UVa10653 {
+	
+	public static void main(String args[]) {
+		UVa10653 sol = new UVa10653();
+		sol.run();		
+	}
+	
+	class Point {
 		int x, y;
 		int dist = Integer.MAX_VALUE;
 		
