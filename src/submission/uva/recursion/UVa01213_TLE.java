@@ -10,10 +10,12 @@ public class UVa01213_TLE {
 	}
 	
 	int[] primes = new int[200];
-	int numPrimes = 0;
+	int numPrimes;
 	
 	void generatePrimes() {
 		primes[0] = 2;
+		numPrimes = 1;
+		
 		for(int i = 3; i <= 1125; i++) {
 			boolean isPrime = true;
 			for(int j = 0; j < numPrimes; j++) {
@@ -23,7 +25,7 @@ public class UVa01213_TLE {
 			}
 			
 			if(isPrime) {
-				primes[++numPrimes] = i;
+				primes[numPrimes++] = i;
 			}
 		}
 	}
