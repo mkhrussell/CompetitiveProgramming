@@ -1,22 +1,17 @@
-package practice.algo.dp;
+package submission.uva.dp;
 
-//import java.io.FileInputStream;
 import java.util.Scanner;
 
-public class Main {
+public class UVa00108 {
 
 	public static void main(String[] args) {
-		Main prob = new Main();
-		prob.run();
+		UVa00108 sol = new UVa00108();
+		sol.run();
 	}
-
+	
 	Scanner sc = null;	
 	
 	void run() {
-//		try {
-//			System.setIn(new FileInputStream("UVa00108_in.txt"));
-//		}catch(Exception e) {}
-		
 		sc = new Scanner(System.in);
 		generateSumMatrix();
 		findMaxSubRectSum();
