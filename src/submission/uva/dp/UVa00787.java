@@ -47,6 +47,7 @@ public class UVa00787 {
 		System.out.println(maxProduct.toString());
 	}
 	
+	/*// Below is the O(N-Cube) solution, which is easier to understand. 
 	void findSolutionNCube() {
 		BigInteger maxProduct = new BigInteger("-99999999999999999999999");
 		for(int start = 0; start < sequenceLength; start++) {
@@ -60,5 +61,6 @@ public class UVa00787 {
 		}		
 		System.out.println(maxProduct.toString());
 	}
+	*/
 
 }
