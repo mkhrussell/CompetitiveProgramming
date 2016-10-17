@@ -1,4 +1,4 @@
-package submission.uva.ds.implementation;
+package practice.algo.ds.implementation;
 
 import java.util.Arrays;
 
